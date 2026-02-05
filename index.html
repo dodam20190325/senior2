@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 시니어 스마트 생활 교실 - 수강신청</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8FAFC; color: #334155; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2563EB 0%, #0F172A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .status-open { background-color: #DCFCE7; color: #166534; }
+        .status-closed { background-color: #F1F5F9; color: #64748B; }
+
+        /* Table Styling */
+        .schedule-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .schedule-table td { border-bottom: 1px solid #F1F5F9; }
+        .schedule-table tr:last-child td { border-bottom: none; }
+        .schedule-table tr:hover { background-color: #F8FAFC; }
+
+        .location-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="glass-header fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-3xl">🌿</span>
+                <h1 class="text-2xl font-black text-slate-800 tracking-tight">시니어 스마트 생활 교실</h1>
+            </div>
+            <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-blue-600 transition">교육 소개</a>
+                <a href="#locations" class="hover:text-blue-600 transition">교육장 안내</a>
+                <a href="#schedule" class="hover:text-blue-600 transition">전체 일정</a>
+                <a href="#apply" class="px-5 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">수강 신청</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16">
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            <div class="bg-white rounded-3xl p-8 md:p-16 shadow-xl border border-slate-100 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-6">2026 부산시 지원사업</span>
+                <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                    <span class="gradient-text">인공지능(AI)</span>과 함께하는<br>
+                    품격 있는 스마트 라이프
+                </h2>
+                <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
+                    내 손안의 비서 AI, 나만의 영상 자서전 만들기.<br>
+                    단 3일 완성! 기초부터 활용까지 쉽고 재미있게 알려드립니다.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#locations" class="px-8 py-4 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition flex items-center justify-center gap-2">
+                        <span>📍 내 주변 교육장 찾기</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Grid (Cards) -->
+        <section id="locations" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800 mb-3">어디서 수강하시겠어요?</h3>
+                <p class="text-slate-500">가까운 교육장을 선택하여 신청해주세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 1. 연제구청 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">PC 특화</div>
+                    <div class="location-icon">🏢</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-1">연제구청</h4>
+                    <p class="text-sm text-slate-500 mb-4">정보화교육장</p>
+                    
+                    <div class="space-y-3 mb-6 flex-grow">
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">🕒</span>
+                            <div>
+                                <span class="font-bold text-blue-600">09:30 ~ 12:00</span>
+                                <p class="text-xs text-slate-400 mt-0.5">*09시 오픈 / 12시 폐쇄 준수</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">📚</span>
+                            <div class="flex flex-col">
+                                <span class="font-bold text-slate-700">주차별 교육과정 상이</span>
+                                <span class="text-xs text-slate-500">• 1~2기: 컴퓨터/인터넷 기초</span>
+                                <span class="text-xs text-slate-500">• 3~5기: PC기반 AI 영상제작</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-blue-50 text-blue-700 font-bold hover:bg-blue-100 transition">신청하기</button>
+                </div>
+
+                <!-- 2. 유라시아 플랫폼 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="location-icon">🚆</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-1">유라시아 플랫폼</h4>
+                    <p class="text-sm text-slate-500 mb-4">부산역 광장</p>
+                    
+                    <div class="space-y-3 mb-6 flex-grow">
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">🕒</span>
+                            <span class="font-bold text-slate-700">14:00 ~ 16:30</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">📚</span>
+                            <span>모바일 AI 활용 비서</span>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                </div>
+
+                <!-- 3. 북구청 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="location-icon">🏛️</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-1">북구청</h4>
+                    <p class="text-sm text-slate-500 mb-4">정보화교육장 (별관)</p>
+                    
+                    <div class="space-y-3 mb-6 flex-grow">
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">🕒</span>
+                            <span class="font-bold text-slate-700">10:00 ~ 12:30</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">📚</span>
+                            <span>스마트폰 AI 활용 기초</span>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                </div>
+
+                <!-- 4. 부산도서관 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="location-icon">📖</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-1">부산도서관</h4>
+                    <p class="text-sm text-slate-500 mb-4">사상구 소담소담실</p>
+                    
+                    <div class="space-y-3 mb-6 flex-grow">
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">🕒</span>
+                            <span class="font-bold text-slate-700">14:00 ~ 16:30</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm">
+                            <span class="text-slate-400 mt-0.5">📚</span>
+                            <span>모바일 AI 크리에이터</span>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Schedule Table -->
+        <section id="schedule" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                <div class="p-8 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">통합 교육 일정 (2월 ~ 4월)</h3>
+                        <p class="text-sm text-slate-500 mt-1">원하시는 기간의 교육장을 확인하세요.</p>
+                    </div>
+                    <div class="flex gap-2 text-xs font-bold">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded">5기 운영</span>
+                        <span class="px-3 py-1 bg-slate-200 text-slate-600 rounded">4기 운영</span>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse schedule-table min-w-[800px]">
+                        <thead>
+                            <tr>
+                                <th class="p-4 w-24 text-center">월</th>
+                                <th class="p-4 w-32">기간</th>
+                                <th class="p-4 bg-blue-50/50 text-blue-900 border-l border-r border-blue-100">연제구청 (5기)<br><span class="text-xs font-normal text-blue-600">09:30</span></th>
+                                <th class="p-4 bg-blue-50/50 text-blue-900 border-r border-blue-100">유라시아 (5기)<br><span class="text-xs font-normal text-blue-600">14:00</span></th>
+                                <th class="p-4">북구청 (4기)<br><span class="text-xs font-normal text-slate-500">10:00</span></th>
+                                <th class="p-4">부산도서관 (4기)<br><span class="text-xs font-normal text-slate-500">14:00</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <!-- Feb -->
+                            <tr>
+                                <td class="p-4 text-center font-bold text-slate-400">2월</td>
+                                <td class="p-4 font-medium">02.23 ~ 02.28</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 font-bold text-blue-700">
+                                    제1기 (월수금)<br>
+                                    <span class="text-xs font-normal text-slate-600 badge-pc">💻 PC 기초</span>
+                                </td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-600">제1기 (월수금)</td>
+                                <td class="p-4 text-slate-300">-</td>
+                                <td class="p-4 text-slate-300">-</td>
+                            </tr>
+                            
+                            <!-- Mar -->
+                            <tr>
+                                <td rowspan="5" class="p-4 text-center font-bold text-slate-800 border-t">3월</td>
+                                <td class="p-4 font-medium border-t">03.02 ~ 03.07</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 border-t font-bold text-blue-700">
+                                    제2기 (화수금)<br>
+                                    <span class="text-[10px] text-red-500 block mb-1">*공휴일 대체</span>
+                                    <span class="text-xs font-normal text-slate-600 badge-pc">💻 PC 기초</span>
+                                </td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 border-t text-slate-600">
+                                    제2기 (화수금)<br>
+                                    <span class="text-[10px] text-red-500">*공휴일 대체</span>
+                                </td>
+                                <td class="p-4 border-t text-slate-300">-</td>
+                                <td class="p-4 border-t text-slate-300">-</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">03.09 ~ 03.14</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 font-bold text-slate-700">제1기 (월수금)</td>
+                                <td class="p-4 text-slate-600">제1기 (월수금)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">03.16 ~ 03.21</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 font-bold text-blue-700">
+                                    제3기 (월수금)<br>
+                                    <span class="text-xs font-normal text-slate-600 badge-ai">🤖 AI 활용</span>
+                                </td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-600">제3기 (월수금)</td>
+                                <td class="p-4 text-slate-300">-</td>
+                                <td class="p-4 text-slate-300">-</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">03.23 ~ 03.28</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 font-bold text-slate-700">제2기 (월수금)</td>
+                                <td class="p-4 text-slate-600">제2기 (월수금)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">03.30 ~ 04.04</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 font-bold text-blue-700">
+                                    제4기 (월수금)<br>
+                                    <span class="text-xs font-normal text-slate-600 badge-ai">🤖 AI 활용</span>
+                                </td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-600">제4기 (월수금)</td>
+                                <td class="p-4 text-slate-300">-</td>
+                                <td class="p-4 text-slate-300">-</td>
+                            </tr>
+
+                            <!-- Apr -->
+                            <tr>
+                                <td rowspan="4" class="p-4 text-center font-bold text-slate-800 border-t">4월</td>
+                                <td class="p-4 font-medium border-t">04.06 ~ 04.11</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 border-t font-bold text-blue-700">
+                                    제5기 (월수금)<br>
+                                    <span class="text-xs font-normal text-slate-600 badge-ai">🤖 AI 활용</span>
+                                </td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 border-t text-slate-600">제5기 (월수금)</td>
+                                <td class="p-4 border-t text-slate-300">-</td>
+                                <td class="p-4 border-t text-slate-300">-</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">04.13 ~ 04.18</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 font-bold text-slate-700">제3기 (월수금)</td>
+                                <td class="p-4 text-slate-600">제3기 (월수금)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium">04.20 ~ 04.25</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 bg-blue-50/30 border-r border-blue-50 text-slate-300">-</td>
+                                <td class="p-4 font-bold text-slate-700">제4기 (월수금)</td>
+                                <td class="p-4 text-slate-600">제4기 (월수금)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-slate-400">04.27 ~ 05.02</td>
+                                <td class="p-4 bg-blue-50/30 border-l border-r border-blue-50 font-bold text-blue-900 bg-blue-100/50" colspan="2">🎉 교육 종료 및 수료</td>
+                                <td class="p-4 font-bold text-slate-700 bg-slate-100/50" colspan="2">🎉 교육 종료 및 수료</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
+            <p class="mb-2 font-bold text-slate-500">2026 시니어 스마트 생활 교실 운영사무국</p>
+            <p>문의: 051-000-0000 | 운영시간: 평일 09:00 ~ 18:00</p>
+            <p class="mt-4">© 2026 Busan Smart Senior Program. All rights reserved.</p>
+        </footer>
+    </main>
+
+</body>
+</html>
