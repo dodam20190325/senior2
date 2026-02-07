@@ -30,53 +30,12 @@
         .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-        .status-open { background-color: #DCFCE7; color: #166534; }
-        .status-closed { background-color: #F1F5F9; color: #64748B; }
-
-        /* Table Styling */
         .schedule-table th { background-color: #F8FAFC; color: #475569; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
         .schedule-table td { border-bottom: 1px solid #F1F5F9; }
         .schedule-table tr:last-child td { border-bottom: none; }
         .schedule-table tr:hover { background-color: #F8FAFC; }
 
         .location-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-
-        /* Modal Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-        .modal-active { display: flex; }
-        .modal-content {
-            background: white;
-            border-radius: 1.5rem;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: modalSlideUp 0.3s ease-out;
-        }
-        @keyframes modalSlideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -92,7 +51,6 @@
                 <a href="#about" class="hover:text-blue-600 transition">교육 소개</a>
                 <a href="#locations" class="hover:text-blue-600 transition">교육장 안내</a>
                 <a href="#schedule" class="hover:text-blue-600 transition">전체 일정</a>
-                <a href="#apply" class="px-5 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">수강 신청</a>
             </nav>
         </div>
     </header>
@@ -151,7 +109,8 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="openModal('연제구청 정보화교육장')" class="w-full py-3 rounded-xl bg-blue-50 text-blue-700 font-bold hover:bg-blue-100 transition">신청하기</button>
+                    <!-- 외부 URL 연결 -->
+                    <button onclick="goToApply()" class="w-full py-3 rounded-xl bg-blue-50 text-blue-700 font-bold hover:bg-blue-100 transition">신청하기</button>
                 </div>
 
                 <!-- 2. 유라시아 플랫폼 -->
@@ -170,7 +129,7 @@
                             <span>모바일 AI 활용 비서</span>
                         </div>
                     </div>
-                    <button onclick="openModal('유라시아 플랫폼')" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                    <button onclick="goToApply()" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
                 </div>
 
                 <!-- 3. 북구청 -->
@@ -189,7 +148,7 @@
                             <span>스마트폰 AI 활용 기초</span>
                         </div>
                     </div>
-                    <button onclick="openModal('북구청 정보화교육장')" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                    <button onclick="goToApply()" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
                 </div>
 
                 <!-- 4. 부산도서관 -->
@@ -208,13 +167,13 @@
                             <span>모바일 AI 크리에이터</span>
                         </div>
                     </div>
-                    <button onclick="openModal('부산도서관 소담소담실')" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
+                    <button onclick="goToApply()" class="w-full py-3 rounded-xl bg-slate-50 text-slate-700 font-bold hover:bg-slate-100 transition">신청하기</button>
                 </div>
             </div>
         </section>
 
         <!-- Detailed Schedule Table -->
-        <section id="schedule" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="schedule" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                 <div class="p-8 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
@@ -349,83 +308,17 @@
         </footer>
     </main>
 
-    <!-- Application Modal -->
-    <div id="applicationModal" class="modal-overlay">
-        <div class="modal-content relative overflow-hidden">
-            <!-- Modal Header -->
-            <div class="bg-slate-800 p-6 flex justify-between items-center">
-                <div>
-                    <h3 class="text-xl font-bold text-white">수강 신청하기</h3>
-                    <p class="text-slate-300 text-sm mt-1">선택하신 교육장으로 신청을 진행합니다.</p>
-                </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="p-6">
-                <form onsubmit="submitForm(event)">
-                    <div class="mb-4">
-                        <label class="block text-sm font-bold text-slate-700 mb-2">신청 교육장</label>
-                        <input type="text" id="selectedCenter" class="w-full p-3 bg-slate-100 rounded-lg text-slate-600 font-medium" readonly>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-bold text-slate-700 mb-2">성함</label>
-                        <input type="text" required placeholder="예: 홍길동" class="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-bold text-slate-700 mb-2">연락처</label>
-                        <input type="tel" required placeholder="예: 010-1234-5678" class="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-                    </div>
-
-                    <div class="mb-6">
-                        <label class="block text-sm font-bold text-slate-700 mb-2">생년월일 (6자리)</label>
-                        <input type="number" required placeholder="예: 580101" class="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-                        <p class="text-xs text-slate-400 mt-1">*만 60세 이상 부산 시민 우선 선발</p>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/30 flex justify-center items-center gap-2">
-                        <span>신청서 제출하기</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <!-- Simple Script for URL redirection -->
     <script>
-        function openModal(centerName) {
-            document.getElementById('selectedCenter').value = centerName;
-            document.getElementById('applicationModal').classList.add('modal-active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-
-        function closeModal() {
-            document.getElementById('applicationModal').classList.remove('modal-active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-
-        function submitForm(event) {
-            event.preventDefault();
-            const center = document.getElementById('selectedCenter').value;
-            // In a real app, you would send this data to a server
-            alert(`${center} 교육 과정 신청이 완료되었습니다.\n담당자가 확인 후 연락드리겠습니다.`);
-            closeModal();
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('applicationModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        function goToApply() {
+            // Code.gs에서 전달받은 targetUrl로 이동합니다.
+            var url = '<?= targetUrl ?>';
+            if(url && url !== 'undefined') {
+                window.open(url, '_blank');
+            } else {
+                alert('연결된 신청 페이지가 없습니다. 관리자에게 문의하세요.');
             }
-        });
+        }
     </script>
 
 </body>
