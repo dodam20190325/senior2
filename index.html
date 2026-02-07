@@ -65,6 +65,9 @@
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        
+        /* 섹션 간격 조정 */
+        section { scroll-margin-top: 100px; }
     </style>
 </head>
 <body class="antialiased">
@@ -74,11 +77,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <span class="text-3xl">🌿</span>
-                <h1 class="text-2xl font-black text-slate-800 tracking-tight">시니어 스마트 생활 교실</h1>
+                <h1 class="text-2xl font-black text-slate-800 tracking-tight cursor-pointer" onclick="window.scrollTo(0,0)">시니어 스마트 생활 교실</h1>
             </div>
-            <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+            <!-- 데스크탑 메뉴 -->
+            <nav class="hidden md:flex gap-6 text-sm font-semibold text-slate-600">
                 <a href="#about" class="hover:text-blue-600 transition">교육 소개</a>
-                <a href="#locations" class="hover:text-blue-600 transition">교육장 안내</a>
+                <a href="#gallery" class="hover:text-blue-600 transition">수강생 작품</a>
+                <a href="#directions" class="hover:text-blue-600 transition">오시는 길</a>
+                <a href="#apply" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition">수강 신청</a>
                 <a href="#schedule" class="hover:text-blue-600 transition">전체 일정</a>
             </nav>
         </div>
@@ -99,24 +105,136 @@
                     단 3일 완성! 기초부터 활용까지 쉽고 재미있게 알려드립니다.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#locations" class="px-8 py-4 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition flex items-center justify-center gap-2">
-                        <span>📍 내 주변 교육장 찾기</span>
+                    <a href="#apply" class="px-8 py-4 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition flex items-center justify-center gap-2">
+                        <span>👇 지금 바로 신청하기</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- 교육장 리스트 (카드) -->
-        <section id="locations" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <!-- 교육 소개 섹션 -->
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-slate-800 mb-3">어디서 수강하시겠어요?</h3>
-                <p class="text-slate-500">가까운 교육장을 선택하여 신청해주세요.</p>
+                <span class="text-blue-600 font-bold text-sm">CURRICULUM</span>
+                <h3 class="text-3xl font-bold text-slate-800 mt-2">이런 것을 배웁니다</h3>
+                <p class="text-slate-500 mt-2">단순한 스마트폰 교육이 아닙니다. AI와 함께하는 창작의 즐거움을 느껴보세요.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 커리큘럼 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h4 class="text-xl font-bold mb-3">내 손안의 AI 비서</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        인공지능(ChatGPT, 제미나이)과 대화하며 궁금한 것을 물어보고, 생활 정보를 얻는 방법을 배웁니다.
+                    </p>
+                </div>
+                <!-- 커리큘럼 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="text-4xl mb-4">🎬</div>
+                    <h4 class="text-xl font-bold mb-3">나만의 영상 자서전</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        쉽고 빠른 AI 편집 도구(Vrew)를 활용하여 소중한 추억이 담긴 사진들을 멋진 영상으로 재탄생시킵니다.
+                    </p>
+                </div>
+                <!-- 커리큘럼 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h4 class="text-xl font-bold mb-3">디지털 굿즈 창작</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        말로 설명하면 그림을 그려주는 AI를 활용해 세상에 하나뿐인 나만의 굿즈(컵, 에코백 등)를 만듭니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 작품 갤러리 섹션 -->
+        <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 bg-slate-50 py-16 rounded-3xl">
+            <div class="text-center mb-12">
+                <span class="text-purple-600 font-bold text-sm">GALLERY</span>
+                <h3 class="text-3xl font-bold text-slate-800 mt-2">수강생 작품 미리보기</h3>
+                <p class="text-slate-500 mt-2">수업 시간에 직접 만든 AI 그림으로 특별한 굿즈를 제작해 드립니다.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="aspect-square bg-slate-200 rounded-lg mb-3 flex items-center justify-center text-4xl">☕</div>
+                    <h5 class="font-bold text-slate-700">나만의 머그컵</h5>
+                    <p class="text-xs text-slate-400">AI 그림 삽입</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="aspect-square bg-slate-200 rounded-lg mb-3 flex items-center justify-center text-4xl">👜</div>
+                    <h5 class="font-bold text-slate-700">에코백</h5>
+                    <p class="text-xs text-slate-400">세상에 단 하나</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="aspect-square bg-slate-200 rounded-lg mb-3 flex items-center justify-center text-4xl">🖼️</div>
+                    <h5 class="font-bold text-slate-700">석화 타일</h5>
+                    <p class="text-xs text-slate-400">인테리어 소품</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="aspect-square bg-slate-200 rounded-lg mb-3 flex items-center justify-center text-4xl">🔑</div>
+                    <h5 class="font-bold text-slate-700">키링</h5>
+                    <p class="text-xs text-slate-400">귀여운 소품</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 오시는 길 섹션 -->
+        <section id="directions" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-800 mb-3">교육장 찾아오시는 길</h3>
+                <p class="text-slate-500">가까운 교육장을 확인하세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4">
+                    <div class="text-3xl">🏢</div>
+                    <div>
+                        <h4 class="font-bold text-lg">연제구청 정보화교육장</h4>
+                        <p class="text-slate-600 mt-1 text-sm">부산광역시 연제구 연제로 2</p>
+                        <p class="text-slate-400 text-xs mt-2">지하철: 1호선 시청역 2번 출구 (도보 5분)</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4">
+                    <div class="text-3xl">🚆</div>
+                    <div>
+                        <h4 class="font-bold text-lg">유라시아 플랫폼</h4>
+                        <p class="text-slate-600 mt-1 text-sm">부산광역시 동구 중앙대로 206 (부산역 광장)</p>
+                        <p class="text-slate-400 text-xs mt-2">지하철: 1호선 부산역 바로 연결</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4">
+                    <div class="text-3xl">🏛️</div>
+                    <div>
+                        <h4 class="font-bold text-lg">북구청 정보화교육장</h4>
+                        <p class="text-slate-600 mt-1 text-sm">부산광역시 북구 낙동대로 1570번길 33 (별관)</p>
+                        <p class="text-slate-400 text-xs mt-2">지하철: 2호선 구명역 1번 출구</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4">
+                    <div class="text-3xl">📖</div>
+                    <div>
+                        <h4 class="font-bold text-lg">부산도서관 소담소담실</h4>
+                        <p class="text-slate-600 mt-1 text-sm">부산광역시 사상구 사상로 310번길 33</p>
+                        <p class="text-slate-400 text-xs mt-2">지하철: 2호선 덕포역 2번 출구</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 수강 신청 섹션 (카드) -->
+        <section id="apply" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            <div class="text-center mb-12">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-bold mb-3">수강 신청</span>
+                <h3 class="text-3xl font-bold text-slate-800 mb-3">교육 장소 선택하기</h3>
+                <p class="text-slate-500">원하시는 교육장을 선택하시면 신청 팝업이 뜹니다.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- 1. 연제구청 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">PC 특화</div>
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">오전반</div>
                     <div class="location-icon">🏢</div>
                     <h4 class="text-xl font-bold text-slate-800 mb-1">연제구청</h4>
                     <p class="text-sm text-slate-500 mb-4">정보화교육장</p>
@@ -125,25 +243,23 @@
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">🕒</span>
                             <div>
-                                <span class="font-bold text-blue-600">09:30 ~ 11:30</span>
-                                <p class="text-xs text-slate-400 mt-0.5">*09시 오픈 / 12시 폐쇄 준수</p>
+                                <span class="font-bold text-blue-600">09:30 ~ 11:30 (2시간)</span>
                             </div>
                         </div>
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">📚</span>
                             <div class="flex flex-col">
-                                <span class="font-bold text-slate-700">주차별 교육과정 상이</span>
                                 <span class="text-xs text-slate-500">• 1~2기: 컴퓨터/인터넷 기초</span>
                                 <span class="text-xs text-slate-500">• 3~5기: PC기반 AI 영상제작</span>
                             </div>
                         </div>
                     </div>
-                    <!-- 신청 버튼 -->
                     <button onclick="openModal('연제구청 정보화교육장')" class="w-full py-3 rounded-xl bg-blue-50 text-blue-700 font-bold hover:bg-blue-100 transition">신청하기</button>
                 </div>
 
                 <!-- 2. 유라시아 플랫폼 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="absolute top-0 right-0 bg-slate-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">오후반</div>
                     <div class="location-icon">🚆</div>
                     <h4 class="text-xl font-bold text-slate-800 mb-1">유라시아 플랫폼</h4>
                     <p class="text-sm text-slate-500 mb-4">부산역 광장</p>
@@ -151,7 +267,7 @@
                     <div class="space-y-3 mb-6 flex-grow">
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">🕒</span>
-                            <span class="font-bold text-slate-700">14:00 ~ 16:00</span>
+                            <span class="font-bold text-slate-700">14:00 ~ 16:00 (2시간)</span>
                         </div>
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">📚</span>
@@ -163,6 +279,7 @@
 
                 <!-- 3. 북구청 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">오전반</div>
                     <div class="location-icon">🏛️</div>
                     <h4 class="text-xl font-bold text-slate-800 mb-1">북구청</h4>
                     <p class="text-sm text-slate-500 mb-4">정보화교육장 (별관)</p>
@@ -170,7 +287,7 @@
                     <div class="space-y-3 mb-6 flex-grow">
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">🕒</span>
-                            <span class="font-bold text-slate-700">10:00 ~ 12:00</span>
+                            <span class="font-bold text-slate-700">10:00 ~ 12:00 (2시간)</span>
                         </div>
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">📚</span>
@@ -182,6 +299,7 @@
 
                 <!-- 4. 부산도서관 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 card-hover flex flex-col">
+                    <div class="absolute top-0 right-0 bg-slate-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl">오후반</div>
                     <div class="location-icon">📖</div>
                     <h4 class="text-xl font-bold text-slate-800 mb-1">부산도서관</h4>
                     <p class="text-sm text-slate-500 mb-4">사상구 소담소담실</p>
@@ -189,7 +307,7 @@
                     <div class="space-y-3 mb-6 flex-grow">
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">🕒</span>
-                            <span class="font-bold text-slate-700">14:00 ~ 16:00</span>
+                            <span class="font-bold text-slate-700">14:00 ~ 16:00 (2시간)</span>
                         </div>
                         <div class="flex items-start gap-2 text-sm">
                             <span class="text-slate-400 mt-0.5">📚</span>
@@ -201,7 +319,7 @@
             </div>
         </section>
 
-        <!-- 일정표 -->
+        <!-- 전체 일정표 -->
         <section id="schedule" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                 <div class="p-8 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -221,10 +339,10 @@
                             <tr>
                                 <th class="p-4 w-24 text-center">월</th>
                                 <th class="p-4 w-32">기간</th>
-                                <th class="p-4 bg-blue-50/50 text-blue-900 border-l border-r border-blue-100">연제구청 (5기)<br><span class="text-xs font-normal text-blue-600">09:30</span></th>
-                                <th class="p-4 bg-blue-50/50 text-blue-900 border-r border-blue-100">유라시아 (5기)<br><span class="text-xs font-normal text-blue-600">14:00</span></th>
-                                <th class="p-4">북구청 (4기)<br><span class="text-xs font-normal text-slate-500">10:00</span></th>
-                                <th class="p-4">부산도서관 (4기)<br><span class="text-xs font-normal text-slate-500">14:00</span></th>
+                                <th class="p-4 bg-blue-50/50 text-blue-900 border-l border-r border-blue-100">연제구청 (5기)<br><span class="text-xs font-normal text-blue-600">09:30 ~ 11:30</span></th>
+                                <th class="p-4 bg-blue-50/50 text-blue-900 border-r border-blue-100">유라시아 (5기)<br><span class="text-xs font-normal text-blue-600">14:00 ~ 16:00</span></th>
+                                <th class="p-4">북구청 (4기)<br><span class="text-xs font-normal text-slate-500">10:00 ~ 12:00</span></th>
+                                <th class="p-4">부산도서관 (4기)<br><span class="text-xs font-normal text-slate-500">14:00 ~ 16:00</span></th>
                             </tr>
                         </thead>
                         <tbody class="text-sm">
@@ -332,7 +450,7 @@
         <!-- 푸터 -->
         <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
             <p class="mb-2 font-bold text-slate-500">2026 시니어 스마트 생활 교실 운영사무국</p>
-            <p>문의: 051-000-0000 | 운영시간: 평일 09:00 ~ 18:00</p>
+            <p>문의: 051-636-0325 | 운영시간: 평일 09:00 ~ 18:00</p>
             <p class="mt-4">© 2026 Busan Smart Senior Program. All rights reserved.</p>
         </footer>
     </main>
@@ -390,7 +508,6 @@
 
     <script>
         // ✅ [중요] 1단계에서 복사한 '웹 앱 URL'을 여기에 붙여넣으세요.
-        // 예시: const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx.../exec";
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEZlLjW-2r3BRGeXPyBabWTH6Lf_BiojbjyllsRbkjsUhhlqGk5rHOikzH9u5iyxyhFA/exec"; 
 
         // 모달 열기
