@@ -311,10 +311,11 @@
     <!-- Simple Script for URL redirection -->
     <script>
         function goToApply() {
-            // Code.gs에서 전달받은 targetUrl로 이동합니다.
-            var url = '<?= targetUrl ?>';
-            if(url && url !== 'undefined') {
-                window.open(url, '_blank');
+            // 👇 여기에 이동하고 싶은 주소(구글 폼, 오픈채팅 등)를 직접 입력하세요.
+            var targetUrl = "https://docs.google.com/spreadsheets/d/1CBrdk3T-HW7Ctk72DxuRrIk5dOQYU7ieoBlyQGLcUO8/edit?gid=0#gid=0"; 
+
+            if(targetUrl && targetUrl !== "") {
+                window.open(targetUrl, '_blank');
             } else {
                 alert('연결된 신청 페이지가 없습니다. 관리자에게 문의하세요.');
             }
